@@ -1,0 +1,45 @@
+ul {
+
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    list-style-type: none;
+    background-color: darkgrey;
+    width: 50%;
+    margin: 2rem auto;
+    padding: 10px;
+    max-width: 35rem;
+    border-radius: 15px;
+    font-size: 30px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+    color: seagreen;
+}
+
+a:active {
+    color: mediumpurple;
+    font-size: 35px;
+}
+
+a:hover {
+    color: yellow;
+}
+
+ul li {
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    padding: 10px;
+    color: darkolivegreen;
+    text-decoration: underline darkslategrey;
+}
+

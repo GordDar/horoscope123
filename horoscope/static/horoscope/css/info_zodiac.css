@@ -1,0 +1,35 @@
+h2 {
+    color: cadetblue;
+    text-align: center;
+    font-size: 30px;
+}
+
+h1 {
+    color: darkslategrey;
+    text-align: center;
+    font-size: 50px;
+}
+
+nav {
+    text-align: center;
+    color: grey;
+    font-size: 20px;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: darkgrey;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+nav a{
+    display: block;
+    margin: 20px;
+}
+
+nav a:hover {
+    color: mediumpurple;
+}

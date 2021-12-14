@@ -28,31 +28,40 @@ types_dict = {
 
 def type(request):
     types = list(types_dict)
-    li_types_elements = ''
-    for type_numbers in types:
-        redirect_path = reverse('types_page', args=[type_numbers])
-        li_types_elements += f"<li><a href='{redirect_path}'>{type_numbers.title()}</a></li>"
-    response = f"""
-    <ul>
-        {li_types_elements}
-    </ul>
-    """
-    return HttpResponse(response)
+    # li_types_elements = ''
+    # for type_numbers in types:
+    #     redirect_path = reverse('types_page', args=[type_numbers])
+    #     li_types_elements += f"<li><a href='{redirect_path}'>{type_numbers.title()}</a></li>"
+    # response = f"""
+    # <ul>
+    #     {li_types_elements}
+    # </ul>
+    # """
+    context = {
+        'types':types,
+    }
+    return render(request, 'horoscope/types_page.html', context=context)
 
 
 def types_page(request, type: str):
-    li_sign_elements = ''
+    # li_sign_elements = ''
+    signs_for_type_list = []
     for types, signs_for_type in types_dict.items():
         if types == type:
             for keys in signs_for_type:
-                redirect_path = reverse('horoscope-name', args=[keys])
-                li_sign_elements += f"<li><a href='{redirect_path}'>{keys.title()}</a></li>"
-    response = f"""
-    <ul>
-        {li_sign_elements}
-    </ul>
-    """
-    return HttpResponse(response)
+                signs_for_type_list.append(keys)
+                # redirect_path = reverse('horoscope-name', args=[keys])
+                # li_sign_elements += f"<li><a href='{redirect_path}'>{keys.title()}</a></li>"
+    # response = f"""
+    # <ul>
+    #     {li_sign_elements}
+    # </ul>
+    # """
+    context={
+        'signs_for_type':signs_for_type_list,
+        'type': type,
+    }
+    return render(request, 'horoscope/sign_for_types.html', context=context)
 
 
 def get_info_by_day(request, month: int, day: int):
@@ -70,21 +79,27 @@ def get_info_by_day(request, month: int, day: int):
 
 def index(request):
     zodiacs = list(sign_zodiac_dict)
-    li_elements = ''
-    for sign in zodiacs:
-        redirect_path = reverse('horoscope-name', args=[sign])
-        li_elements += f"<li> <a href='{redirect_path}'> {sign.title()} </a> </li>"
-    response = f"""
-    <ol>
-        {li_elements}    
-    </ol>
-    """
-    return HttpResponse(response)
+    # for sign in zodiacs:
+    #     redirect_path = reverse('horoscope-name', args=[sign])
+    #     li_elements += f"<li> <a href='{redirect_path}'> {sign.title()} </a> </li>"
+    context={
+        "zodiacs":zodiacs,
+    }
+    return render(request, "horoscope/index.html", context=context)
 
 
 def get_info_about_zodiac_sign(request, sign_zodiac: str):
-    response = render_to_string('horoscope/info_zodiac.html')
-    return HttpResponse(response)
+    description = sign_zodiac_dict.get(sign_zodiac)
+    data = {
+        "description_zodiac":description,
+        "sign": sign_zodiac.title(),
+        "zodiacs":sign_zodiac_dict,
+        "sign_name": description.split(' ')[2]
+    }
+    return render(request, 'horoscope/info_zodiac.html', context=data)
+
+def get_yyyy_converters(request, sign_zodiac):
+    return HttpResponse(f'Вы передали число из 4 цифр - {sign_zodiac}')
 
 
 def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
@@ -94,3 +109,5 @@ def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
     name_zodiac = zodiacs[sign_zodiac - 1]
     redirect_url = reverse('horoscope-name', args=(name_zodiac,))
     return HttpResponseRedirect(redirect_url)
+
+

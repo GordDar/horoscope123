@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static "horoscope/css/index.css" %}">
+{% endblock %}
+
+
+{% block title %} Меню типов {% endblock %}
+
+{% block content %}
+    <h1>Приложение "Гороскоп"</h1>
+    <ul>
+        {% for type in types %}
+            <li><a href="{% url 'types_page' type=type %}">{{ type|title}}</a></li>
+        {% endfor %}
+    </ul>
+    {% include "includes/navbar.html" %}
+{% endblock %}
