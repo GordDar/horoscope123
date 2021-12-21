@@ -29,6 +29,11 @@ a:hover {
     color: yellow;
 }
 
+select {
+    text-align: center;
+    font-size: 25px;
+}
+
 ul li {
     text-align: center;
     width: 100%;
@@ -41,5 +46,10 @@ h1 {
     padding: 10px;
     color: darkolivegreen;
     text-decoration: underline darkslategrey;
+}
+
+div {
+    text-align: center;
+    font-size: 30px;
 }
 

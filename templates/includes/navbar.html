@@ -1,10 +1,13 @@
 {% load split_filter %}
 
 <nav>
-    <a href="{% url "start_page"%}">Главная</a>
-    <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BD%D0%B0%D0%BA%D0%B8_%D0%B7%D0%BE%D0%B4%D0%B8%D0%B0%D0%BA%D0%B0">Источник</a>
-    <a href="{% url 'types' %}">Типы</a>
+    <div>
+        <a href="{% url "start_page" %}">Главная</a>
+        <a href="https://ru.wikipedia.org/wiki/%D0%97%D0%BD%D0%B0%D0%BA%D0%B8_%D0%B7%D0%BE%D0%B4%D0%B8%D0%B0%D0%BA%D0%B0">Источник</a>
+        <a href="{% url 'types' %}">Типы</a>
+        <a href="{% url 'number' %}">Узнать знак по номеру</a>
+    </div>
     {% for zodiac, description_zodiac in zodiacs.items %}
-            <a href="{% url "horoscope-name" sign_zodiac=zodiac %}">{{ description_zodiac|russian_zodiac|title}}</a>
+        <a href="{% url "horoscope-name" sign_zodiac=zodiac %}">{{ description_zodiac|russian_zodiac|title }}</a>
     {% endfor %}
 </nav>

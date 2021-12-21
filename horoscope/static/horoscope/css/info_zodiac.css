@@ -30,6 +30,10 @@ nav a{
     margin: 20px;
 }
 
+div {
+    border-bottom: 5px solid black;
+}
+
 nav a:hover {
     color: mediumpurple;
 }

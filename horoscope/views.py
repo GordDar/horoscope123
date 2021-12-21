@@ -105,9 +105,13 @@ def get_yyyy_converters(request, sign_zodiac):
 def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
     zodiacs = list(sign_zodiac_dict)
     if sign_zodiac > len(zodiacs):
-        return HttpResponseNotFound(f"Вы ввели неверный знак зодиака - {sign_zodiac}")
+        return HttpResponseNotFound(f"Вы ввели неверное число для поиска знака зодиака - {sign_zodiac}")
     name_zodiac = zodiacs[sign_zodiac - 1]
     redirect_url = reverse('horoscope-name', args=(name_zodiac,))
     return HttpResponseRedirect(redirect_url)
+
+def get_info_by_number(request):
+    return render(request, 'horoscope/info_by_number.html', {})
+
 
 
