@@ -7,3 +7,7 @@ register = template.Library()
 def russian_zodiac(value, key=' '):
     split_dict = value.split(key)
     return split_dict[2]
+
+@register.filter(name='times')
+def times(value):
+    return range(1, value+1)

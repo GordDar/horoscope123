@@ -48,8 +48,7 @@ h1 {
     text-decoration: underline darkslategrey;
 }
 
-div {
-    text-align: center;
+label {
     font-size: 30px;
 }
 

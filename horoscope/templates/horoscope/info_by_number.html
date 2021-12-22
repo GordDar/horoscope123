@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load split_filter %}
 {% block css_additional %}
     <link rel="stylesheet" href="{% static "horoscope/css/index.css" %}">
 {% endblock %}
@@ -9,26 +10,27 @@
 
 {% block content %}
     <h1>Приложение "Гороскоп"</h1>
-    <div>
-    <form action="{% url 'start_page' %}">
-    <label for="zodiac_by_number">Выберите интересующий вас номер для определения знака зодиака:</label>
-    <select name=value id="zodiac_by_number">
-        <option value="1" selected>1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-    </select>
-    <button>Отправить запрос</button>
-</form>
-    </div>
+     <form id="form">
+     <label for="select">Выберите интересующий вас номер для определения знака зодиака:</label>
+        <select id="select">
+            {% for i in 12|times %}
+                <option value={{ i }}>{{ i }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+
+    <script>
+        const form = document.getElementById('form');
+        const select = document.getElementById('select');
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          document.location='{% url "info-by-number" sign_zodiac=12345 %}'.replace(/12345/, select.value);
+        })
+    </script>
+
+
 
     {% include "includes/navbar.html" %}
 {% endblock %}
